@@ -1,5 +1,5 @@
-import { auth, db } from "../firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { db } from "../firebase";
+
 import {
   collection,
   updateDoc,
@@ -10,7 +10,6 @@ import {
 import { useEffect, useState } from "react";
 import "../pages/Home";
 
-const deleteRef = collection(db, "todos");
 const ref = collection(db, "todos");
 
 const Todos = () => {
