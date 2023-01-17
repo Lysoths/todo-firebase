@@ -45,7 +45,7 @@ const Todos = () => {
       {data.map((item) => (
         <div
           key={Math.random()}
-          className='flex flex-col items-center p-4 gap-3 boy m-2 rounded-md text-'
+          className='flex flex-col items-center p-4 border-4 border-x-indigo-500 border-y-red-500 gap-3 boy m-2 rounded-md text-'
         >
           <p className='text-justify xxx '>{item.todo}</p>
           <b className='mx-auto'>Oluşturan : {item.created}</b>
