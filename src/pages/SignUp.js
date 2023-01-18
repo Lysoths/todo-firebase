@@ -13,16 +13,19 @@ const SignUp = () => {
       e.preventDefault();
       if (!email || !password) {
         alert("Kullanıcı adı ya da şifre boş olamaz ! ");
+      } else if (email.length < 8 || password.length < 8) {
+        alert("Hatalı E-mail ya da şifre 8 haneden küçük tekrar deneyiniz");
+      } else {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((auth) => {
+            updateProfile(auth.user, { displayName: name });
+          })
+          .catch((e) =>
+            e.code === "auth/email-already-in-use"
+              ? alert("Bu email adresi daha önce alınmış")
+              : alert("Hatalı email ya da şifre")
+          );
       }
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((auth) => {
-          updateProfile(auth.user, { displayName: name });
-        })
-        .catch((e) =>
-          e.code === "auth/email-already-in-use"
-            ? alert("Bu email adresi daha önce alınmış")
-            : alert("Hatalı email ya da şifre")
-        );
     },
     [name, email, password]
   );

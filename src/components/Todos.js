@@ -8,33 +8,38 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { auth } from "../firebase";
 import "../pages/Home";
 
-const ref = collection(db, "todos");
+const ref = () => {
+  if (collection(db, auth.currentUser.uid)) {
+    return collection(db, auth.currentUser.uid);
+  } else {
+    return collection(db, "todos");
+  }
+};
 
 const Todos = () => {
   const [data, setData] = useState([]);
+  const [update, setUpdate] = useState("");
   useEffect(() => {
-    onSnapshot(ref, (snapshot) => {
+    onSnapshot(ref(), (snapshot) => {
       setData(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
     });
   }, []);
 
   const deleteTodo = (id) => {
-    if (id === "6HC7o1zF7khjQU6mWHvt") {
-      alert("Üzgünüm... bunu silemezsin.");
-    } else {
-      deleteDoc(doc(db, "todos", id));
-    }
+    deleteDoc(doc(ref(), id));
   };
 
   const updateTodo = (id) => {
-    const update = doc(db, "todos", id);
-    if (id === "6HC7o1zF7khjQU6mWHvt") {
-      alert("Evet düzenleme de yapamazsın :)");
+    const newTodo = prompt("Enter a new todo");
+    const update = doc(db, auth.currentUser.uid, id);
+    if (newTodo === "") {
+      alert("Boş Todo oluşturamazsın");
     } else {
       updateDoc(update, {
-        todo: prompt("enter a new todo"),
+        todo: newTodo,
       });
     }
   };

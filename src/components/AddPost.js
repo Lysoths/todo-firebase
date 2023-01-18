@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
-const ref = collection(db, "todos");
 
+const ref = () => {
+  if (collection(db, auth.currentUser.uid)) {
+    return collection(db, auth.currentUser.uid);
+  } else {
+    return collection(db, "todos");
+  }
+};
 const AddPost = () => {
   const [todo, setTodo] = useState("");
 
@@ -13,7 +19,7 @@ const AddPost = () => {
     } else if (todo.length > 30) {
       alert("Maksimum 30 karakter..");
     } else {
-      const docRef = await addDoc(ref, {
+      await addDoc(ref(), {
         todo: todo,
         created: auth.currentUser.displayName,
       });

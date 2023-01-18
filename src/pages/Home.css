@@ -6,3 +6,35 @@
 .boy {
   width: 280px;
 }
+
+.relative {
+  position: relative;
+}
+
+.invisible {
+  position: sticky;
+  top: -120px;
+  left: -111px;
+  transition: all 0.3s linear;
+  opacity: 1;
+}
+.noninvisible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  bottom: 1500px;
+
+  transition: all 0.3s linear;
+  opacity: 1 important;
+  background-color: white;
+  padding: 10px;
+}
+.update input {
+  padding: 5px;
+}
+.update input::placeholder {
+  text-align: center;
+}
