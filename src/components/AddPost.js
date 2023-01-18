@@ -22,6 +22,8 @@ const AddPost = () => {
       await addDoc(ref(), {
         todo: todo,
         created: auth.currentUser.displayName,
+        createdTime: Date.now(),
+        complated: "Tamamlanmadı",
       });
       setTodo("");
     }

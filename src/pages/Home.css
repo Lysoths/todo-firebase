@@ -1,6 +1,19 @@
-.xxx {
+p {
   display: block;
   word-wrap: break-word;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 800;
+  transition: all 0.3s linear;
+}
+
+.Tamamlandi {
+  text-decoration: line-through;
+  font-weight: 800;
+  color: #52b69aba;
+  font-size: 1.2rem;
+  font-weight: 800;
+  transition: all 0.3s linear;
 }
 
 .boy {
