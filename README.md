@@ -1,1 +1,1 @@
-Firebase kullanılarak oluşturulmuş bir to-do list. Arkadaş grubunun oluşturabileceği ortak to-do listesi.
+Firebase Auth ve Database kullanılarak oluşturulmuş bir To-Do list
